@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.inet.codebase.mapper.UserMapper">
+
+    <select id="getUserAndRole" resultType="com.inet.codebase.entity.User">
+    SELECT
+	    t1.user_id AS userId,
+	    t1.user_name AS userName,
+	    t1.user_role AS userRole,
+	    t2.role_name AS roleName
+    FROM
+	    tbl_user AS t1
+    LEFT JOIN
+	    tbl_role AS t2
+    ON
+        t1.user_role = t2.role_id
+    WHERE
+	    t1.user_id = #{userID}
+    </select>
+</mapper>
