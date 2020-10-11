@@ -52,7 +52,6 @@ public class ExceptionConfig {
      */
     @ExceptionHandler(Exception.class)
     public Result globalException(HttpServletRequest request, Throwable ex) {
-        System.out.println("================globalException(开始)==================");
         System.out.println(request);
         return new Result(getStatus(request).value(), ex.getMessage(), 104);
     }
