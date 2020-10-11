@@ -42,6 +42,11 @@ public class HcyRealm extends AuthorizingRealm {
         return this.userService = userService;
     }
 
+    /**
+     * 一定需要创建,不然出错
+     * @param token
+     * @return
+     */
     @Override
     public boolean supports(AuthenticationToken token) {
         return token instanceof JwtToken;
