@@ -1,6 +1,8 @@
 package com.inet.codebase.config;
 
 import com.inet.codebase.utlis.Result;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.ShiroException;
 import org.apache.shiro.authz.UnauthorizedException;
 import org.springframework.http.HttpStatus;
@@ -16,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author HCY
  * @since 2020/10/11
  */
+@Api(value = "异常处理" , tags = {"异常处理的接口"})
 @RestControllerAdvice
 public class ExceptionConfig {
 
@@ -26,6 +29,7 @@ public class ExceptionConfig {
      * @param exception 异常元素
      * @return Result
      */
+    @ApiOperation("捕获shiro异常")
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     @ExceptionHandler(ShiroException.class)
     public Result handle401(ShiroException exception){
@@ -38,6 +42,7 @@ public class ExceptionConfig {
      * @since 2020-10-11
      * @return Result
      */
+    @ApiOperation("捕获权限异常")
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     @ExceptionHandler(UnauthorizedException.class)
     public Result handel401(){
@@ -50,6 +55,7 @@ public class ExceptionConfig {
      * @since 2020-10-11
      * @return Result
      */
+    @ApiOperation("捕获所有异常")
     @ExceptionHandler(Exception.class)
     public Result globalException(HttpServletRequest request, Throwable ex) {
         System.out.println(request);

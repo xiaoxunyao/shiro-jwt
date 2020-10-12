@@ -7,6 +7,8 @@ import com.inet.codebase.service.UserService;
 import com.inet.codebase.utlis.JwtUtils;
 import com.inet.codebase.utlis.Result;
 import com.inet.codebase.utlis.ShiroMd5Utlis;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -25,6 +27,7 @@ import java.util.Map;
  * @author HCY
  * @since 2020-10-10
  */
+@Api(value = "用户操作接口",tags = {"进行用户的CRUD操作的接口"})
 @RestController
 @RequestMapping("/user")
 @CrossOrigin
@@ -36,6 +39,7 @@ public class UserController {
     /**
      * 登录请求
      */
+    @ApiOperation("登录接口")
     @PostMapping("/login")
     public Result postLogin(@RequestParam("Account") String account,
                             @RequestParam("Password") String password){
@@ -64,6 +68,7 @@ public class UserController {
         return new Result(result,"登录请求",100);
     }
 
+    @ApiOperation("可以是管理员或者用户,但是必须要有edit权限")
     @GetMapping("/getAdmin")
     @RequiresRoles(logical = Logical.OR, value = {"user", "admin"})
     @RequiresPermissions("edit")
