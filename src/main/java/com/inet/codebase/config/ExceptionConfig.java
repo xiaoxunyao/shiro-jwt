@@ -58,7 +58,6 @@ public class ExceptionConfig {
     @ApiOperation("捕获所有异常")
     @ExceptionHandler(Exception.class)
     public Result globalException(HttpServletRequest request, Throwable ex) {
-        System.out.println(request);
         return new Result(getStatus(request).value(), ex.getMessage(), 104);
     }
 
