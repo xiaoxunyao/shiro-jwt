@@ -6,7 +6,7 @@
 
 **框架 : [SpringBoot](https://spring.io/) + [MyBatis](https://mybatis.org/mybatis-3/zh/index.html) + [MyBatis-Plus](https://baomidou.com/) + [Shiro](http://shiro.apache.org/) + [JWT](https://jwt.io/)**
 
-**工具 : [Maven](https://mvnrepository.com) + [IDEA](https://www.jetbrains.com/) + [Navicat](http://www.navicat.com.cn/) + [PostMan](https://www.postman.com/)**
+**工具 : [Maven](https://mvnrepository.com) + [IDEA](https://www.jetbrains.com/) + [Navicat](http://www.navicat.com.cn/) + [PostMan](https://www.postman.com/) + [Swagger](https://swagger.io/)**
 
 ### 数据库文件
 
@@ -663,12 +663,12 @@ public class ExceptionConfig {
 // 拥有 vip 和 normal 权限可以访问
 @RequiresPermissions(logical = Logical.AND, value = {"edit", "view"})
 
-// 拥有 user 或 admin 角色，且拥有 vip 权限可以访问
+// 拥有 user 或 admin 角色，且拥有 edit 权限可以访问
 @GetMapping("/getVipMessage")
 @RequiresRoles(logical = Logical.OR, value = {"user", "admin"})
-@RequiresPermissions("vip")
+@RequiresPermissions("edit")
 public ResultMap getVipMessage() {
-    return resultMap.success().code(200).message("成功获得 vip 信息！");
+    return resultMap.success().code(200).message("成功获得 edit 信息！");
 }
 ```
 
